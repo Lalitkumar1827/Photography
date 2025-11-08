@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagar Photography | Capturing Life's Moments</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--secondary-color);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Featured Work Styles */
+        .featured-work {
+            background-color: var(--light-color);
+        }
+
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            height: 250px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Services Styles */
+        .services {
+            background-color: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .service-card p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .service-price {
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+
+        /* About Styles */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Contact Styles */
+        .contact {
+            background-color: var(--light-color);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .modal-title {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        /* Page Styles */
+        .page-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .page-content {
+            padding: 5rem 0;
+        }
+
+        /* Services Page Styles */
+        .services-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1554048612-b6a482bc67e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .pricing-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border-top-color: var(--secondary-color);
+            position: relative;
+        }
+
+        .pricing-card.featured::before {
+            content: "Most Popular";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 1rem 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-features li i {
+            color: var(--secondary-color);
+            margin-right: 10px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Sagar<span>Photography</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#featured-work" class="active">Featured Work</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <button class="btn btn-outline" id="loginBtn">Login</button>
+                    <button class="btn btn-primary" id="registerBtn">Register</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Capturing Life's Beautiful Moments</h1>
+                <p>Professional photography services for weddings, portraits, events, and more. Let us tell your story through our lens.</p>
+                <button class="btn btn-primary">View Our Work</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Work Section -->
+    <section id="featured-work" class="featured-work">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Work</h2>
+                <p>Explore our collection of stunning photographs across different categories</p>
+            </div>
+            
+            <div class="category-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="portrait">Portrait</button>
+                <button class="filter-btn" data-filter="wedding">Wedding</button>
+                <button class="filter-btn" data-filter="landscape">Landscape</button>
+                <button class="filter-btn" data-filter="wildlife">Wildlife</button>
+                <button class="filter-btn" data-filter="architecture">Architecture</button>
+            </div>
+            
+            <div class="gallery" id="gallery-container">
+                <!-- Gallery items will be populated by JavaScript -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn btn-primary" id="loadMoreBtn">Load More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>We offer a wide range of photography services to meet your needs and capture your special moments.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-camera-retro"></i>
+                    </div>
+                    <h3>Portrait Photography</h3>
+                    <p>Professional portrait sessions for individuals, families, and groups in our studio or on location.</p>
+                    <div class="service-price">Starting at $150</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <h3>Wedding Photography</h3>
+                    <p>Comprehensive wedding coverage to capture every special moment of your big day.</p>
+                    <div class="service-price">Packages from $1,200</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Event Photography</h3>
+                    <p>Corporate events, parties, and special occasions captured with creativity and professionalism.</p>
+                    <div class="service-price">Starting at $200/hour</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="#all-services" class="btn btn-primary">View All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>Founded in 2010, Sagar Photography has been dedicated to capturing life's most precious moments with artistry and professionalism. Our team of experienced photographers brings a unique perspective to every project.</p>
+                    <p>We believe that photography is more than just taking pictures - it's about telling stories, evoking emotions, and creating timeless art that you'll cherish for generations.</p>
+                    <h3>Our Mission</h3>
+                    <p>To capture authentic moments with creativity and technical excellence, providing our clients with beautiful imagery that tells their unique story.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Our Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch to discuss your photography needs</p>
+            </div>
+            
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Interested In</label>
+                        <select id="service" class="form-control" required>
+                            <option value="">Select a service</option>
+                            <option value="portrait">Portrait Photography</option>
+                            <option value="wedding">Wedding Photography</option>
+                            <option value="event">Event Photography</option>
+                            <option value="commercial">Commercial Photography</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Services Page (Hidden by default) -->
+    <section id="all-services" class="services-hero" style="display: none;">
+        <div class="container">
+            <h1>Our Photography Services</h1>
+            <p>Comprehensive photography solutions for every occasion and need</p>
+        </div>
+    </section>
+    
+    <section id="services-page" style="display: none;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Professional Photography Services</h2>
+                <p>We offer a complete range of photography services to capture your most important moments</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Service cards will be populated by JavaScript -->
+            </div>
+            
+            <div class="section-title" style="margin-top: 5rem;">
+                <h2>Pricing Plans</h2>
+                <p>Choose the package that best fits your needs and budget</p>
+            </div>
+            
+            <div class="pricing-table">
+                <div class="pricing-card">
+                    <h3>Basic Package</h3>
+                    <div class="price">$150<span>/session</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 1-hour photo session</li>
+                        <li><i class="fas fa-check"></i> 15 professionally edited digital images</li>
+                        <li><i class="fas fa-check"></i> Online gallery for 30 days</li>
+                        <li><i class="fas fa-times"></i> Print release</li>
+                        <li><i class="fas fa-times"></i> Additional editing</li>
+                    </ul>
+                    <button class="btn btn-outline">Select Plan</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>Standard Package</h3>
+                    <div class="price">$350<span>/session</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 2-hour photo session</li>
+                        <li><i class="fas fa-check"></i> 35 professionally edited digital images</li>
+                        <li><i class="fas fa-check"></i> Online gallery for 60 days</li>
+                        <li><i class="fas fa-check"></i> Print release</li>
+                        <li><i class="fas fa-times"></i> Additional editing</li>
+                    </ul>
+                    <button class="btn btn-primary">Select Plan</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Premium Package</h3>
+                    <div class="price">$600<span>/session</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 3-hour photo session</li>
+                        <li><i class="fas fa-check"></i> 60 professionally edited digital images</li>
+                        <li><i class="fas fa-check"></i> Online gallery for 90 days</li>
+                        <li><i class="fas fa-check"></i> Print release</li>
+                        <li><i class="fas fa-check"></i> Additional editing</li>
+                    </ul>
+                    <button class="btn btn-outline">Select Plan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Sagar Photography</h3>
+                    <p>Capturing life's beautiful moments with creativity and passion. Professional photography services for all occasions.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#featured-work">Featured Work</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Portrait Photography</a></li>
+                        <li><a href="#">Wedding Photography</a></li>
+                        <li><a href="#">Event Photography</a></li>
+                        <li><a href="#">Commercial Photography</a></li>
+                        <li><a href="#">Photo Editing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Photography Lane</li>
+                        <li><i class="fas fa-city"></i> Studio City, CA 91604</li>
+                        <li><i class="fas fa-envelope"></i> info@sagarphotography.com</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Sagar Photography. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeLoginModal">&times;</span>
+            <h2 class="modal-title">Login to Your Account</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem;">Don't have an account? <a href="#" id="switchToRegister">Register here</a></p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeRegisterModal">&times;</span>
+            <h2 class="modal-title">Create an Account</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email Address</label>
+                    <input type="email" id="registerEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Register</button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem;">Already have an account? <a href="#" id="switchToLogin">Login here</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for the website
+        const galleryData = [
+            {
+                id: 1,
+                title: "Golden Hour Portrait",
+                category: "portrait",
+                image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "A beautiful portrait captured during golden hour"
+            },
+            {
+                id: 2,
+                title: "Mountain Landscape",
+                category: "landscape",
+                image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "Majestic mountain scenery at sunrise"
+            },
+            {
+                id: 3,
+                title: "Wedding Ceremony",
+                category: "wedding",
+                image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "Emotional moments from a wedding ceremony"
+            },
+            {
+                id: 4,
+                title: "Urban Architecture",
+                category: "architecture",
+                image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "Modern architecture in an urban setting"
+            },
+            {
+                id: 5,
+                title: "Wildlife Photography",
+                category: "wildlife",
+                image: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "Wild animals in their natural habitat"
+            },
+            {
+                id: 6,
+                title: "Product Showcase",
+                category: "commercial",
+                image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "Professional product photography for commercial use"
+            },
+            {
+                id: 7,
+                title: "Family Portrait",
+                category: "portrait",
+                image: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "A joyful family portrait session in the park"
+            },
+            {
+                id: 8,
+                title: "Beach Wedding",
+                category: "wedding",
+                image: "https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "Romantic beach wedding ceremony at sunset"
+            },
+            {
+                id: 9,
+                title: "Forest Path",
+                category: "landscape",
+                image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "Serene forest path in autumn colors"
+            }
+        ];
+
+        const servicesData = [
+            {
+                id: 1,
+                title: "Portrait Photography",
+                icon: "fas fa-camera-retro",
+                description: "Professional portrait sessions for individuals, families, and groups in our studio or on location.",
+                price: "Starting at $150"
+            },
+            {
+                id: 2,
+                title: "Wedding Photography",
+                icon: "fas fa-ring",
+                description: "Comprehensive wedding coverage to capture every special moment of your big day.",
+                price: "Packages from $1,200"
+            },
+            {
+                id: 3,
+                title: "Event Photography",
+                icon: "fas fa-calendar-alt",
+                description: "Corporate events, parties, and special occasions captured with creativity and professionalism.",
+                price: "Starting at $200/hour"
+            },
+            {
+                id: 4,
+                title: "Commercial Photography",
+                icon: "fas fa-building",
+                description: "Professional photography for businesses, products, and marketing materials.",
+                price: "Custom quotes available"
+            },
+            {
+                id: 5,
+                title: "Landscape Photography",
+                icon: "fas fa-mountain",
+                description: "Breathtaking landscape and nature photography for your home or office.",
+                price: "Print sales starting at $50"
+            },
+            {
+                id: 6,
+                title: "Photo Editing",
+                icon: "fas fa-edit",
+                description: "Professional photo editing and retouching services to enhance your images.",
+                price: "Starting at $25/image"
+            }
+        ];
+
+        // DOM Elements
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const closeRegisterModal = document.getElementById('closeRegisterModal');
+        const switchToRegister = document.getElementById('switchToRegister');
+        const switchToLogin = document.getElementById('switchToLogin');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const contactForm = document.getElementById('contactForm');
+        const galleryContainer = document.getElementById('gallery-container');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        const viewAllServicesBtn = document.querySelector('a[href="#all-services"]');
+
+        // Initialize the website
+        function init() {
+            // Load gallery
+            loadGallery();
+            
+            // Load services
+            loadServices();
+            
+            // Set up event listeners
+            setupEventListeners();
+            
+            // Set up modal events
+            setupModals();
+            
+            // Set up form submissions
+            setupForms();
+        }
+
+        // Load gallery content
+        function loadGallery() {
+            galleryContainer.innerHTML = '';
+            
+            galleryData.forEach(item => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = `gallery-item ${item.category}`;
+                galleryItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="gallery-overlay">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                    </div>
+                `;
+                galleryContainer.appendChild(galleryItem);
+            });
+        }
+
+        // Load services content
+        function loadServices() {
+            const servicesContainer = document.querySelector('#services-page .services-grid');
+            if (servicesContainer) {
+                servicesContainer.innerHTML = '';
+                
+                servicesData.forEach(service => {
+                    const serviceCard = document.createElement('div');
+                    serviceCard.className = 'service-card';
+                    serviceCard.innerHTML = `
+                        <div class="service-icon">
+                            <i class="${service.icon}"></i>
+                        </div>
+                        <h3>${service.title}</h3>
+                        <p>${service.description}</p>
+                        <div class="service-price">${service.price}</div>
+                    `;
+                    servicesContainer.appendChild(serviceCard);
+                });
+            }
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // Filter buttons
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Filter gallery
+                    const filter = this.getAttribute('data-filter');
+                    filterGallery(filter);
+                });
+            });
+            
+            // Load more button
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', function() {
+                    // In a real application, this would load more items from an API
+                    alert('Loading more images... (This is a demo)');
+                });
+            }
+            
+            // View all services button
+            if (viewAllServicesBtn) {
+                viewAllServicesBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showServicesPage();
+                });
+            }
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        }
+
+        // Filter gallery by category
+        function filterGallery(category) {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            galleryItems.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Show services page
+        function showServicesPage() {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show services page sections
+            document.getElementById('all-services').style.display = 'block';
+            document.getElementById('services-page').style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Set up modal functionality
+        function setupModals() {
+            // Login modal
+            loginBtn.addEventListener('click', () => {
+                loginModal.style.display = 'flex';
+            });
+            
+            closeLoginModal.addEventListener('click', () => {
+                loginModal.style.display = 'none';
+            });
+            
+            // Register modal
+            registerBtn.addEventListener('click', () => {
+                registerModal.style.display = 'flex';
+            });
+            
+            closeRegisterModal.addEventListener('click', () => {
+                registerModal.style.display = 'none';
+            });
+            
+            // Switch between login and register modals
+            switchToRegister.addEventListener('click', (e) => {
+                e.preventDefault();
+                loginModal.style.display = 'none';
+                registerModal.style.display = 'flex';
+            });
+            
+            switchToLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                registerModal.style.display = 'none';
+                loginModal.style.display = 'flex';
+            });
+            
+            // Close modals when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === loginModal) {
+                    loginModal.style.display = 'none';
+                }
+                if (e.target === registerModal) {
+                    registerModal.style.display = 'none';
+                }
+            });
+        }
+
+        // Set up form submissions
+        function setupForms() {
+            // Login form
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                // In a real application, you would send this to a backend
+                console.log('Login attempt:', { email, password });
+                
+                // Simulate successful login
+                alert('Login successful! (This is a demo)');
+                loginModal.style.display = 'none';
+                loginForm.reset();
+            });
+            
+            // Register form
+            registerForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('registerName').value;
+                const email = document.getElementById('registerEmail').value;
+                const password = document.getElementById('registerPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+                
+                // In a real application, you would send this to a backend
+                console.log('Registration attempt:', { name, email, password });
+                
+                // Simulate successful registration
+                alert('Registration successful! (This is a demo)');
+                registerModal.style.display = 'none';
+                registerForm.reset();
+            });
+            
+            // Contact form
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const service = document.getElementById('service').value;
+                const message = document.getElementById('message').value;
+                
+                // In a real application, you would send this to a backend
+                console.log('Contact form submission:', { name, email, service, message });
+                
+                // Simulate successful submission
+                alert('Thank you for your message! We will get back to you soon. (This is a demo)');
+                contactForm.reset();
+            });
+        }
+
+        // Initialize the website when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
